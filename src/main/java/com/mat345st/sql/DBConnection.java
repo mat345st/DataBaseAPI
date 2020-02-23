@@ -17,7 +17,9 @@ public class DBConnection {
 
     private static Map<String, ConnectionContainer> connections = new HashMap<>();
 
-    DBConnection(String url, String username, String password, String alias) {
+    DBConnection() {}
+
+    public static void addConnection(String url, String username, String password, String alias){
         if (!url.startsWith("jdbc:mysql://"))
             url = "jdbc:mysql://" + url;
 
@@ -31,7 +33,6 @@ public class DBConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 

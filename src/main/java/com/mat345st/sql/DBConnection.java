@@ -20,9 +20,7 @@ public class DBConnection {
     DBConnection() {}
 
     public static void addConnection(String url, String username, String password, String alias){
-        if (!url.startsWith("jdbc:mysql://"))
-            url = "jdbc:mysql://" + url;
-
+        if (!url.startsWith("jdbc:mysql://")) url = "jdbc:mysql://" + url;
 
         String [] login = new String[]{url, username, password};
 

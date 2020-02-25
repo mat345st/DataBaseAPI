@@ -27,7 +27,6 @@ public class ConnectionContainer {
 
     }
 
-
     public String getUrl(){
         return login[0];
     }

@@ -13,8 +13,7 @@ import java.util.Map;
  * @author mat345st
  */
 
-public class DBConnection {
-
+public class DBConnectionO {
 
     private static Map<String, ConnectionContainer> connections = new HashMap<>();
 
@@ -25,13 +24,13 @@ public class DBConnection {
 
         ConnectionContainer cc = new ConnectionContainer(alias, login);
         connections.put(alias, cc);
+
         try {
             cc.createNewConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     public static Statement getStatement(String alias){
         ConnectionContainer cc;
@@ -41,17 +40,23 @@ public class DBConnection {
         }
 
         try {
-            if (!cc.validConnection())
+            if (!cc.validConnection()) {
+                System.out.println("New connection");
                 cc.createNewConnection();
-            if (!cc.validStatement())
+                System.out.println(cc.validConnection());
+            }
+            if (!cc.validStatement()){
+                System.out.println("New statement");
                 cc.createStatement();
+                System.out.println(cc.validStatement());
+            }
+
             return cc.last_statement;
         }catch (SQLException e){
             e.printStackTrace();
         }
 
         return null;
-
     }
 
     public static Connection getConnection(String alias){

@@ -2,7 +2,7 @@
 
    This API keeps connected to a database. Statements of each connected database can be created by a static method
    
-   [jar file](./out/artifacts/DataBaseAPI_jar)
+   [jar file to implement the api as libarie](./out/artifacts/DataBaseAPI_jar)
    
 
 ## Usage

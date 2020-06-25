@@ -13,7 +13,7 @@ import java.util.Map;
  * @author mat345st
  */
 
-public class DBConnectionO {
+public class DBConnection {
 
     private static Map<String, ConnectionContainer> connections = new HashMap<>();
 

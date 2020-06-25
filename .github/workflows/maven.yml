@@ -1,6 +1,13 @@
-name: Java CI
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-on: [push]
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -9,9 +16,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: echo "::set-env name=DATE::$(date '+%y%m%d%H%M%S')"
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with: 
+        tag_name: v${{env.DATE }}
+        release_name: v${{ env.DATE }}
+    - name: Upload Release
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./target/DatabaseAPI-1.0.jar
+        asset_name: DataBaseAPI.jar
+        asset_content_type: application/x-gzip

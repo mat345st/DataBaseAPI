@@ -38,6 +38,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./target/DatabaseAPI-1.0-SNAPSHOT.jar
+        asset_path: ./target/DataBaseAPI-1.0-SNAPSHOT.jar
         asset_name: DataBaseAPI.jar
         asset_content_type: application/x-gzip

@@ -34,19 +34,17 @@ public class DBConnection {
 
     public static Statement getStatement(String alias){
         ConnectionContainer cc;
-        if ((cc=getConnectionContainer(alias))==null) {
+        if ((cc=getConnectionContainer(alias)) == null) {
             System.err.println("The database " + alias + " doesn't exist");
             return null;
         }
 
         try {
             if (!cc.validConnection()) {
-                System.out.println("New connection");
                 cc.createNewConnection();
                 System.out.println(cc.validConnection());
             }
             if (!cc.validStatement()){
-                System.out.println("New statement");
                 cc.createStatement();
                 System.out.println(cc.validStatement());
             }

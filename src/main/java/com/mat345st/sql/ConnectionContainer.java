@@ -24,7 +24,6 @@ public class ConnectionContainer {
     ConnectionContainer(String alias, String[] login){
         this.alias = alias;
         this.login = login;
-
     }
 
     public String getUrl(){
@@ -39,7 +38,6 @@ public class ConnectionContainer {
 
     public Connection createNewConnection() throws SQLException {
         this.connection = DriverManager.getConnection(login[0], login[1],login[2]);
-        System.out.println("Connected to " + this.connection.getMetaData().getURL().split("/")[this.connection.getMetaData().getURL().split("/").length -1] /*login[0].split("/")[login[0].split("/").length - 1]*/ + " as " + this.connection.getMetaData().getUserName().split("@")[0]);
         return this.connection;
     }
 
@@ -58,7 +56,7 @@ public class ConnectionContainer {
     }
 
     static boolean validStatement(Statement statement) throws SQLException {
-        if (statement==null) return false;
+        if (statement == null) return false;
         return !statement.isClosed();
     }
 
@@ -67,7 +65,7 @@ public class ConnectionContainer {
     }
 
     static boolean validConnection(Connection con) throws SQLException {
-        if (con==null) return false;
+        if (con == null) return false;
         return (!con.isClosed() && con.isValid(2000));
     }
 
